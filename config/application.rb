@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -27,5 +27,7 @@ module ExpertTodo
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.time_zone = "Tokyo"
   end
 end
