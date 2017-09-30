@@ -72,9 +72,10 @@ end
 group :test do
   gem "database_rewinder"
   gem "factory_girl_rails"
-  gem "faker"
-  gem "rspec"
-  gem "rspec-rails"
+  %w[rails core expectations mocks support].each do |name|
+    gem "rspec-#{name}", github: "rspec/rspec-#{name}"
+  end
+  gem "capybara"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
