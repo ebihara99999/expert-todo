@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   }
 
   resources :tasks, except: [:show]
+  resource :task_state, only: [:update]
 end

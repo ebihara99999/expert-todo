@@ -46,6 +46,12 @@ RSpec.describe "Tasks", type: :system do
       expect(Task.find_by(description: "変更後の詳細")).not_to be_nil
     end
 
+    it "changes task done" do
+      visit "/tasks"
+      within("#task_#{task.id}") { click_link "終了済みへ変更" }
+      expect(Task.where(is_done: true).count).to eq 1
+    end
+
     it "destroy task" do
       visit "/tasks"
       within("#task_#{task.id}") { click_link "削除" }

@@ -9,3 +9,4 @@ ja:
     edit: "編集"
     destroy: "削除"
     submit: "登録"
+    update_states_into_done: "終了済みへ変更"
