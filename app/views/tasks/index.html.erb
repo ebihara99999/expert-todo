@@ -4,11 +4,12 @@
   <thead>
   <tr>
     <th><%= t("common.edit") %></th>
-    <th><%= t "activerecord.attributes.task.task_name"  %></th>
-    <th><%= t "activerecord.attributes.task.description"  %></th>
-    <th><%= t "activerecord.attributes.task.due_date"  %></th>
-    <th><%= t "activerecord.attributes.task.created_at"  %></th>
-    <th><%= t "activerecord.attributes.task.updated_at"  %></th>
+    <th><%= t "activerecord.attributes.task.task_name" %></th>
+    <th><%= t "activerecord.attributes.task.description" %></th>
+    <th><%= t "activerecord.attributes.task.due_date" %></th>
+    <th><%= t "activerecord.attributes.task.created_at" %></th>
+    <th><%= t "activerecord.attributes.task.updated_at" %></th>
+    <th><%= t "common.update_states_into_done" %></th>
     <th>削除</th>
   </tr>
   </thead>
@@ -19,12 +20,17 @@
         <td><%= task.task_name %></td>
         <td><%= task.description %></td>
         <% if task.due_date %>
-          <td><%= l task.due_date, format: :very_short %></td>
+            <td><%= l task.due_date, format: :very_short %></td>
         <% else %>
-          <td></td>
+            <td></td>
         <% end %>
         <td><%= l task.created_at, format: :very_short %></td>
         <td><%= l task.updated_at, format: :very_short %></td>
+        <% if !task.is_done %>
+            <td><%= link_to t("common.update_states_into_done"), task_state_path(params: {id: task.id}), method: :patch %></td>
+        <% else %>
+            <td></td>
+        <% end %>
         <td><%= link_to t("common.destroy"), task_path(task.id), method: :delete %></td>
       </tr>
   <% end %>
