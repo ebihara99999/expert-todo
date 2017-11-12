@@ -1,0 +1,2 @@
+class TaskFilesController < ApplicationController
+end
