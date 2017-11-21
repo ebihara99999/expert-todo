@@ -3,7 +3,7 @@ default: &default
   username: ubuntu
   host: localhost
   encoding: utf8
-  database: test_restaurant_reputation_research
+  database: expert-todo_test_ci
   pool: 5
 
 development:
