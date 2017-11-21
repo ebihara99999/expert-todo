@@ -1,15 +1,30 @@
 require "rails_helper"
 
 RSpec.describe "Tasks", type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   context do
     let(:user) { create :user }
 
     before do
-      login_as user
+      login_as user, scope: :user
+    end
+
+    it "uploads files", js: true do
+      # pending "Fix later"
+      create(:task, user_id: user.id)
+      visit "/tasks"
+
+      click_link "ファイルを添付"
+
+      attach_file "attachment_file_to_task", Rails.root.join("spec", "support", "task_files", "konaki.jpg")
+
+      page.execute_script "window.scrollBy(0,5000)"
+
+      click_button "Submit image"
+
+      sleep 1
+      expect(TaskFile.count).to eq 1
+      expect(FileTaskAttachment.count).to eq 1
+      # expect(page.current_path).to eq "/tasks"
     end
 
     it "creates new task" do
@@ -30,7 +45,7 @@ RSpec.describe "Tasks", type: :system do
     let(:task) { create :task }
 
     before do
-      login_as task.user
+      login_as task.user, scope: :user
     end
 
     it "updates task" do
