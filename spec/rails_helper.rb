@@ -62,9 +62,10 @@ RSpec.configure do |config|
     DatabaseRewinder.clean_all
   end
 
-  config.after(:each) do
-    DatabaseRewinder.clean
+  config.after(:example) do |ex|
+    DatabaseRewinder.clean unless ex.metadata[:skip_clean]
   end
+
   config.before(type: :system) do |ex|
     if ex.metadata[:js]
       caps = Selenium::WebDriver::Remote::Capabilities.chrome(
