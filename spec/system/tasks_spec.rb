@@ -16,15 +16,19 @@ RSpec.describe "Tasks", type: :system do
       click_link "ファイルを添付"
 
       attach_file "attachment_file_to_task", Rails.root.join("spec", "support", "task_files", "konaki.jpg")
+      attach_file "attachment_file_to_task", Rails.root.join("spec", "support", "task_files", "test1.txt")
 
       page.execute_script "window.scrollBy(0,5000)"
 
-      click_button "Submit image"
+      page.accept_alert do
+        click_button "Submit image"
+        sleep 2
+      end
 
-      sleep 1
-      expect(TaskFile.count).to eq 1
-      expect(FileTaskAttachment.count).to eq 1
-      # expect(page.current_path).to eq "/tasks"
+      expect(TaskFile.count).to eq 2
+      expect(FileTaskAttachment.count).to eq 2
+      expect(page).to have_content "konaki.jpg"
+      expect(page).to have_content "test1.txt"
     end
 
     it "creates new task" do

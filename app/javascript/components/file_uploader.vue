@@ -1,10 +1,21 @@
 <template>
     <div id="file-attachment">
+        <div v-if="uploadedImageNames">
+            <h3>アップロードされたファイル</h3>
+            <ol>
+                <li v-for="(uploadedImageName, index) in uploadedImageNames">
+                    <h2>{{uploadedImageName}}</h2>
+                </li>
+            </ol>
+        </div>
+
         <div>
+            <div v-if="message != ''">{{ message }}</div>
             <h2>Taskにファイルを添付</h2>
             <label for="attachment_file_to_task">ファイルを添付</label>
             <input type="file" id="attachment_file_to_task" @change="onFileChange">
         </div>
+
         <div v-if="images">
             <ol>
                 <li v-for="(image, index) in images">
@@ -15,7 +26,7 @@
             </ol>
         </div>
 
-        <button id="hogehoge" @click="submitImage(path)">Submit image</button>
+        <button @click="submitImage(path)">Submit image</button>
     </div>
 </template>
 
@@ -27,6 +38,8 @@
       return {
         images: [],
         path: window.location.pathname,
+        message: '',
+        uploadedImageNames: [],
       }
     },
     methods: {
@@ -47,11 +60,10 @@
         reader.readAsDataURL(file);
       },
       submitImage: function (path) {
-        console.log(path)
+        console.log(path);
         let formData = new FormData();
         for (let i = 0; i < this.images.length; i++) {
           formData.append('task_file' + i, this.images[i].uploadFile);
-          //hogehoge[`task_file${i}`] = this.images[i].uploadFile
         }
         let config = {
           headers: {
@@ -67,10 +79,16 @@
         axios
           .post(path, formData, config)
           .then((response) => {
+            for (let image of this.images) {
+              this.uploadedImageNames.push(image.name);
+            }
+            this.images = [];
             console.log(response);
+            alert('ファイルを添付しました');
           })
           .catch( (error) => {
             console.log(error);
+            alert('ファイルを添付できませんでした');
           })
       }
     }
