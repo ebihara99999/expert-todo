@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   resources :tasks, except: [:show] do
-    resources :task_files, only: [:index, :create]
+    resources :task_files, only: [:index, :new, :create, :show]
   end
   resource :task_state, only: [:update]
 end

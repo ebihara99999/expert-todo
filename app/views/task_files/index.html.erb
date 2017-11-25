@@ -1,4 +1,23 @@
-<div id="app">
-  <uploader></uploader>
-</div>
-<%= javascript_pack_tag 'todo' %>
+<h1><%= t("tasks.index.title") %></h1>
+<h2><%= link_to t("common.new"), new_task_path %></h2>
+<table>
+  <thead>
+  <tr>
+    <th><%= t("task_files.index.task_file_name") %></th>
+    <th><%= t "activerecord.attributes.task.created_at" %></th>
+    <th><%= t "activerecord.attributes.task.updated_at" %></th>
+    <th><%= t("task_files.index.download") %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @task_files.each do |task_file| %>
+      <tr <%= "id=task_#{task_file.id}" %>>
+        <td><%= task_file.attached_file.file.filename %></td>
+        <td><%= l task_file.created_at, format: :very_short %></td>
+        <td><%= l task_file.updated_at, format: :very_short %></td>
+        <td><%= link_to t("task_files.index.download"),
+                        task_task_file_path(task_id: params[:task_id], id: task_file.id) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

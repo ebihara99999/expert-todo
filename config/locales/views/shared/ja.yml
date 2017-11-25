@@ -13,3 +13,8 @@ ja:
     index:
       update_states_into_done: "終了済みへ変更"
       attach_files: "ファイルを添付"
+      index_attach_files: "添付ファイル一覧"
+  task_files:
+    index:
+      task_file_name: "ファイル名"
+      download: "ダウンロード"

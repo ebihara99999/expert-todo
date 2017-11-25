@@ -5,6 +5,9 @@ class TaskFilesController < ApplicationController
     @task_files = current_user.tasks.find(params[:task_id]).task_files
   end
 
+  def new
+  end
+
   def create
     Uploader::TaskFileUploader.new.
       upload_files(params[:task_id],

@@ -26,7 +26,7 @@
             </ol>
         </div>
 
-        <button @click="submitImage(path)">Submit image</button>
+        <button @click="submitImage(current_path)">Submit image</button>
     </div>
 </template>
 
@@ -37,7 +37,7 @@
     data: () => {
       return {
         images: [],
-        path: window.location.pathname,
+        current_path: window.location.pathname,
         message: '',
         uploadedImageNames: [],
       }
@@ -59,9 +59,9 @@
         };
         reader.readAsDataURL(file);
       },
-      submitImage: function (path) {
-        console.log(path);
+      submitImage: function (current_path) {
         let formData = new FormData();
+        let path = current_path.replace("/new", "");
         for (let i = 0; i < this.images.length; i++) {
           formData.append('task_file' + i, this.images[i].uploadFile);
         }
