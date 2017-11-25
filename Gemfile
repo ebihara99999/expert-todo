@@ -40,6 +40,15 @@ gem "active_decorator"
 
 gem "webpacker", github: "rails/webpacker"
 
+gem "carrierwave", "~> 1.0"
+gem "fog-aws"
+
+gem "aws-sdk-s3", "~> 1"
+
+gem "foreman"
+
+gem "activerecord-import"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -72,12 +81,10 @@ group :development do
 end
 
 group :test do
+  gem "capybara"
   gem "database_rewinder"
   gem "factory_girl_rails"
-  %w[rails core expectations mocks support].each do |name|
-    gem "rspec-#{name}", github: "rspec/rspec-#{name}"
-  end
-  gem "capybara"
+  gem "rspec-rails", "~> 3.7"
   gem "selenium-webdriver"
 end
 

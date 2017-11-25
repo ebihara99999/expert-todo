@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171111154550) do
+ActiveRecord::Schema.define(version: 20171112034845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "file_task_attachments", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "task_file_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_file_id"], name: "index_file_task_attachments_on_task_file_id"
+    t.index ["task_id", "task_file_id"], name: "index_file_task_attachments_on_task_id_and_task_file_id", unique: true
+    t.index ["task_id"], name: "index_file_task_attachments_on_task_id"
+  end
+
+  create_table "task_files", force: :cascade do |t|
+    t.string "attached_file", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -49,5 +65,7 @@ ActiveRecord::Schema.define(version: 20171111154550) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "file_task_attachments", "task_files"
+  add_foreign_key "file_task_attachments", "tasks"
   add_foreign_key "tasks", "users"
 end

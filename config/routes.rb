@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     sessions: "users/sessions",
   }
 
-  resources :tasks, except: [:show]
+  resources :tasks, except: [:show] do
+    resources :task_files, only: [:index, :new, :create, :show]
+  end
   resource :task_state, only: [:update]
 end
