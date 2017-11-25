@@ -43,6 +43,8 @@ gem "webpacker", github: "rails/webpacker"
 gem "carrierwave", "~> 1.0"
 gem "fog-aws"
 
+gem "aws-sdk-s3", "~> 1"
+
 gem "foreman"
 
 gem "activerecord-import"

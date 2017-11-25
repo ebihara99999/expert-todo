@@ -8,6 +8,12 @@ class TaskFilesController < ApplicationController
   def new
   end
 
+  def show
+    task_file = TaskFile.find(params[:id])
+    downloaded_file = task_file.download
+    send_data downloaded_file, filename: task_file.attached_file.file.filename
+  end
+
   def create
     Uploader::TaskFileUploader.new.
       upload_files(params[:task_id],
