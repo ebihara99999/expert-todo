@@ -20,9 +20,8 @@ RSpec.describe "TaskFiles", type: :system do
 
       page.execute_script "window.scrollBy(0,5000)"
 
-      page.accept_alert do
+      page.accept_alert(wait: 6) do
         click_button "Submit image"
-        sleep 2
       end
 
       expect(TaskFile.count).to eq 2
