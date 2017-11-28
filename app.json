@@ -1,8 +1,21 @@
 {
   "name": "expert-todo",
   "scripts": {
+    "postdeploy": "bundle exec rails db:migrate"
   },
   "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_REGION": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "AWS_S3_BUCKET": {
+      "required": true
+    },
     "LANG": {
       "required": true
     },
@@ -47,10 +60,10 @@
   ],
   "buildpacks": [
     {
-      "url": "heroku/ruby"
+      "url": "heroku/nodejs"
     },
     {
-      "url": "heroku/nodejs"
+      "url": "heroku/ruby"
     }
   ]
 }
