@@ -1,12 +1,23 @@
 module Uploader
   class TaskFileUploader
-    def upload_files(task_id, uploaded_files)
+    attr_accessor :task_id, :files, :files_count
+    def initialize(task_id, *args)
+      @task_id = task_id
+      @files_count = args[0].keys.count
+
+      files_count.times do |i|
+        class_eval("attr_accessor :task_file#{i}")
+        send("task_file#{i}=", args[0][:"task_file#{i}"])
+      end
+    end
+
+    def upload_files
       TaskFile.transaction do
-        uploaded_files.compact!
         task_files = []
-        uploaded_files.each do |uploaded_file|
-          task_files << TaskFile.create!(attached_file: uploaded_file)
+        files_count.times do |i|
+          task_files << TaskFile.create!(attached_file: send("task_file#{i}"))
         end
+
         file_task_attachments = task_files.map { |task_file| FileTaskAttachment.new(task_file_id: task_file.id, task_id: task_id) }
 
         result = FileTaskAttachment.import file_task_attachments, all_or_none: true

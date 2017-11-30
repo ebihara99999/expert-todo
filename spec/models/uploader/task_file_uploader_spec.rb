@@ -5,7 +5,7 @@ RSpec.describe Uploader::TaskFileUploader, type: :model do
     let(:task) { create(:task) }
 
     it "creates 2 task_files and 2 file_task_attachments" do
-      Uploader::TaskFileUploader.new.upload_files(task.id, mock_uploaded_files)
+      Uploader::TaskFileUploader.new(task.id, mock_uploaded_file_params).upload_files
       expect(TaskFile.count).to eq 2
       expect(FileTaskAttachment.count).to eq 2
     end

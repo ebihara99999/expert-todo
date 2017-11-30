@@ -15,20 +15,12 @@ class TaskFilesController < ApplicationController
   end
 
   def create
-    Uploader::TaskFileUploader.new.
-      upload_files(params[:task_id],
-                   [params[:task_file0],
-                    params[:task_file1],
-                    params[:task_file2]])
+    Uploader::TaskFileUploader.new(params[:task_id], task_files_params(params)).upload_files
   end
 
   private
 
     def task_files_params(params)
-      params.permit(:task_file0, :task_file1, :task_file2)
-    end
-
-    def task_id_params(params)
-      params.permit(:task_id)
+      params.permit(:task_file0, :task_file1, :task_file2, :task_file3, :task_file4)
     end
 end

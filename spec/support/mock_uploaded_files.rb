@@ -1,4 +1,4 @@
-def mock_uploaded_files(file_paths = [])
+def mock_uploaded_file_params(file_paths = [])
   file_paths << Rails.root.join("spec", "support", "task_files", "konaki.jpg")
   file_paths << Rails.root.join("spec", "support", "task_files", "test1.txt")
 
@@ -11,5 +11,5 @@ def mock_uploaded_files(file_paths = [])
     )
   end
 
-  files
+  { task_file0: files[0], task_file1: files[1] }
 end
