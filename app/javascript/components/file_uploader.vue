@@ -86,7 +86,7 @@
             console.log(response);
             alert('ファイルを添付しました');
           })
-          .catch( (error) => {
+          .catch((error) => {
             console.log(error);
             alert('ファイルを添付できませんでした');
           })
