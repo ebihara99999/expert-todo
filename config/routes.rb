@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   resources :tasks, except: [:show] do
     resources :task_files, only: [:index, :new, :create, :show]
   end
-  resource :task_state, only: [:update]
+
+  namespace :tasks do
+    resource :task_end, only: [:create]
+  end
 end

@@ -31,7 +31,7 @@
         <td><%= link_to t("tasks.index.attach_files"), new_task_task_file_path(task_id: task.id)  %></td>
         <td><%= link_to t("tasks.index.index_attach_files"), task_task_files_path(task_id: task.id)  %></td>
         <% if !task.is_done %>
-            <td><%= link_to t("tasks.index.update_states_into_done"), task_state_path(params: {id: task.id}), method: :patch %></td>
+            <td><%= link_to t("tasks.index.update_states_into_done"), tasks_task_end_path(params: {id: task.id}), method: :post %></td>
         <% else %>
             <td></td>
         <% end %>
