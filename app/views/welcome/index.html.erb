@@ -1,1 +1,8 @@
 <h1><%= t "welcome.index.title" %></h1>
+<div id="app">
+  <div class="container">
+    <router-view></router-view>
+    <router-link to="/tasks">タスク一覧</router-link>
+  </div>
+</div>
+<%= javascript_pack_tag 'main' %>

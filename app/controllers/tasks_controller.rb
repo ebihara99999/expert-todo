@@ -1,13 +1,18 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :load_task, only: [:edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   def index
     @tasks = current_user.tasks
+    render :index, formats: "json", handlers: "jbuilder"
   end
 
   def new
     @task = Task.new
+    @task.user_id = current_user.id
+
+    render :new, formats: "json", handlers: "jbuilder"
   end
 
   def create
@@ -15,22 +20,23 @@ class TasksController < ApplicationController
     @task.user_id = current_user.id
 
     if @task.save
-      redirect_to tasks_path, notice: "タスクを登録しました"
+      render :index, formats: "json", handlers: "jbuilder"
     else
-      render :new
+      render json: @task.errors, status: :unprocessable_entity
     end
   end
 
   def edit
+    render :edit, formats: "json", handlers: "jbuilder"
   end
 
   def update
     @task.assign_attributes(task_params(params))
-
     if @task.save
-      redirect_to tasks_path, notice: "タスクを更新しました"
+      #redirect_to tasks_path, notice: "タスクを更新しました", status: :ok
+      render :index, formats: "json", handlers: "jbuilder"
     else
-      render :edit
+      render json: @task.errors, status: :unprocessable_entity
     end
   end
 

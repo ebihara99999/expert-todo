@@ -1,32 +1,34 @@
 <template>
-    <div id="file-attachment">
-        <div v-if="uploadedImageNames">
-            <h3>アップロードされたファイル</h3>
-            <ol>
-                <li v-for="(uploadedImageName, index) in uploadedImageNames">
-                    <h2>{{uploadedImageName}}</h2>
-                </li>
-            </ol>
-        </div>
+    <div id="app">
+        <div id="file-attachment">
+            <div v-if="uploadedImageNames">
+                <h3>アップロードされたファイル</h3>
+                <ol>
+                    <li v-for="(uploadedImageName, index) in uploadedImageNames">
+                        <h2>{{uploadedImageName}}</h2>
+                    </li>
+                </ol>
+            </div>
 
-        <div>
-            <div v-if="message != ''">{{ message }}</div>
-            <h2>Taskにファイルを添付</h2>
-            <label for="attachment_file_to_task">ファイルを添付</label>
-            <input type="file" id="attachment_file_to_task" @change="onFileChange">
-        </div>
+            <div>
+                <div v-if="message != ''">{{ message }}</div>
+                <h2>Taskにファイルを添付</h2>
+                <label for="attachment_file_to_task">ファイルを添付</label>
+                <input type="file" id="attachment_file_to_task" @change="onFileChange">
+            </div>
 
-        <div v-if="images">
-            <ol>
-                <li v-for="(image, index) in images">
-                    <h2>{{image.name}}</h2>
-                    <img :src="image.thumnail"/>
-                    <button @click="images.splice(index, 1)">Remove image</button>
-                </li>
-            </ol>
-        </div>
+            <div v-if="images">
+                <ol>
+                    <li v-for="(image, index) in images">
+                        <h2>{{image.name}}</h2>
+                        <img :src="image.thumnail"/>
+                        <button @click="images.splice(index, 1)">Remove image</button>
+                    </li>
+                </ol>
+            </div>
 
-        <button @click="submitImage(current_path)">Submit image</button>
+            <button @click="submitImage(current_path)">Submit image</button>
+        </div>
     </div>
 </template>
 
