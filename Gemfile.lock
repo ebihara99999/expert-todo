@@ -7,48 +7,6 @@ GIT
       rack-proxy (>= 0.6.1)
       railties (>= 4.2)
 
-GIT
-  remote: https://github.com/rspec/rspec-core.git
-  revision: b81b8b3e3449bc1b95c5dab499592eba174c0e3f
-  specs:
-    rspec-core (3.7.0.pre)
-      rspec-support (= 3.7.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-expectations.git
-  revision: 4f611817858efbcfdb66783648e8dbbb4400666b
-  specs:
-    rspec-expectations (3.7.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.7.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-mocks.git
-  revision: 78d04f05d45ef920afb0a51f118b119898c76ab3
-  specs:
-    rspec-mocks (3.7.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.7.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-rails.git
-  revision: 404651a743f316f681e578233f9f4dde35a6ece9
-  specs:
-    rspec-rails (3.7.0.pre)
-      actionpack (>= 3.0)
-      activesupport (>= 3.0)
-      railties (>= 3.0)
-      rspec-core (= 3.7.0.pre)
-      rspec-expectations (= 3.7.0.pre)
-      rspec-mocks (= 3.7.0.pre)
-      rspec-support (= 3.7.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-support.git
-  revision: 95a23e928232659f05903575b7b0cb0f6f2b4030
-  specs:
-    rspec-support (3.7.0.pre)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -85,6 +43,8 @@ GEM
       activemodel (= 5.1.3)
       activesupport (= 5.1.3)
       arel (~> 8.0)
+    activerecord-import (0.20.2)
+      activerecord (>= 3.2)
     activesupport (5.1.3)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -94,6 +54,19 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
     ast (2.3.0)
+    aws-partitions (1.39.0)
+    aws-sdk-core (3.9.0)
+      aws-partitions (~> 1.0)
+      aws-sigv4 (~> 1.0)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.3.0)
+      aws-sdk-core (~> 3)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-s3 (1.7.0)
+      aws-sdk-core (~> 3)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.0)
+    aws-sigv4 (1.0.2)
     bcrypt (3.1.11)
     bindex (0.5.0)
     binding_of_caller (0.7.2)
@@ -103,13 +76,17 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
-    capybara (2.15.1)
+    capybara (2.16.1)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    carrierwave (1.2.1)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.1)
@@ -135,6 +112,7 @@ GEM
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
     erubi (1.6.1)
+    excon (0.59.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -142,12 +120,33 @@ GEM
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
     ffi (1.9.18)
+    fog-aws (1.4.1)
+      fog-core (~> 1.38)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-core (1.45.0)
+      builder
+      excon (~> 0.58)
+      formatador (~> 0.2)
+    fog-json (1.0.2)
+      fog-core (~> 1.0)
+      multi_json (~> 1.10)
+    fog-xml (0.1.3)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
+    formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     i18n (0.8.6)
+    ipaddress (0.8.3)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jmespath (1.3.1)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -160,13 +159,13 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mini_mime (0.1.4)
-    mini_portile2 (2.2.0)
+    mini_mime (1.0.0)
+    mini_portile2 (2.3.0)
     minitest (5.10.3)
     multi_json (1.12.1)
     nio4r (2.1.0)
-    nokogiri (1.8.0)
-      mini_portile2 (~> 2.2.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     onkcop (0.49.1.0)
       rubocop (~> 0.49.1)
       rubocop-rspec (>= 1.15.1)
@@ -191,7 +190,7 @@ GEM
     pry-stack_explorer (0.4.9.2)
       binding_of_caller (>= 0.7)
       pry (>= 0.9.11)
-    public_suffix (3.0.0)
+    public_suffix (3.0.1)
     puma (3.10.0)
     rack (2.0.3)
     rack-proxy (0.6.2)
@@ -230,6 +229,23 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rspec-core (3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-expectations (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-mocks (3.7.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.7.0)
+    rspec-rails (3.7.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.7.0)
+      rspec-expectations (~> 3.7.0)
+      rspec-mocks (~> 3.7.0)
+      rspec-support (~> 3.7.0)
+    rspec-support (3.7.0)
     rubocop (0.49.1)
       parallel (~> 1.10)
       parser (>= 2.3.3.1, < 3.0)
@@ -303,14 +319,19 @@ PLATFORMS
 
 DEPENDENCIES
   active_decorator
+  activerecord-import
+  aws-sdk-s3 (~> 1)
   bullet
   byebug
   capybara
+  carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   database_rewinder
   devise
   dotenv-rails
   factory_girl_rails
+  fog-aws
+  foreman
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   onkcop
@@ -321,11 +342,7 @@ DEPENDENCIES
   pry-stack_explorer
   puma (~> 3.7)
   rails (~> 5.1.3)
-  rspec-core!
-  rspec-expectations!
-  rspec-mocks!
-  rspec-rails!
-  rspec-support!
+  rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
@@ -342,4 +359,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.4
+   1.16.0

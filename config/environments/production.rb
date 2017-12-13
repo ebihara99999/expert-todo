@@ -93,4 +93,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Email
+  config.action_mailer.smtp_settings = {
+    port: ENV["SMTP_PORT"],
+    address: ENV["SMTP_SERVER"],
+    user_name: ENV["SMTP_LOGIN"].presence,
+    password: ENV["SMTP_PASSWORD"].presence,
+    domain: ENV["SMTP_DOMAIN"] || ENV["LOCAL_DOMAIN"],
+    authentication: (ENV["SMTP_AUTH_METHOD"] == "none") ? nil : ENV["SMTP_AUTH_METHOD"] || :plain,
+    ca_file: ENV["SMTP_CA_FILE"].presence,
+    openssl_verify_mode: ENV["SMTP_OPENSSL_VERIFY_MODE"],
+    enable_starttls_auto: ENV["SMTP_ENABLE_STARTTLS_AUTO"] || true,
+  }
+  config.action_mailer.default_url_options = { host: ENV["HOST_NAME"] || "ebihara99999-expert-todo.herokuapp.com" }
 end

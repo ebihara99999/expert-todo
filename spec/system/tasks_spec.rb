@@ -1,15 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Tasks", type: :system do
-  before do
-    driven_by(:rack_test)
-  end
-
   context do
     let(:user) { create :user }
 
     before do
-      login_as user
+      login_as user, scope: :user
     end
 
     it "creates new task" do
@@ -30,7 +26,7 @@ RSpec.describe "Tasks", type: :system do
     let(:task) { create :task }
 
     before do
-      login_as task.user
+      login_as task.user, scope: :user
     end
 
     it "updates task" do
@@ -44,6 +40,12 @@ RSpec.describe "Tasks", type: :system do
       end
       expect(Task.find_by(task_name: "変更後のタスク名")).not_to be_nil
       expect(Task.find_by(description: "変更後の詳細")).not_to be_nil
+    end
+
+    it "changes task done" do
+      visit "/tasks"
+      within("#task_#{task.id}") { click_link "終了済みへ変更" }
+      expect(Task.where(is_done: true).count).to eq 1
     end
 
     it "destroy task" do
