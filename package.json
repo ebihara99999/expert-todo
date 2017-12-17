@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
+    "aws-sdk": "^2.171.0",
     "axios": "^0.17.1",
     "coffeescript": "1.12.7",
     "dotenv": "^4.0.0",

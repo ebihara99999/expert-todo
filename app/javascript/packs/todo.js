@@ -1,5 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
-import Uploader from '../components/file_uploader.vue'
+import Uploader from '../components/task_files/new.vue'
 import TaskIndex from '../components/tasks/index.vue'
 import VueRouter from 'vue-router';
 

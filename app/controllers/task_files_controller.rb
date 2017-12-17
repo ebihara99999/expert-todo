@@ -3,6 +3,7 @@ class TaskFilesController < ApplicationController
 
   def index
     @task_files = current_user.tasks.find(params[:task_id]).task_files
+    render :index, formats: "json", handlers: "jbuilder"
   end
 
   def new
@@ -15,7 +16,12 @@ class TaskFilesController < ApplicationController
   end
 
   def create
-    Uploader::TaskFileUploader.new(params[:task_id], task_files_params(params)).upload_files
+    result = Uploader::TaskFileUploader.new(params[:task_id], task_files_params(params)).upload_files
+    if result
+      render :index, formats: "json", handlers: "jbuilder"
+    else
+      render json: result.errors, status: :unprocessable_entity
+    end
   end
 
   private
