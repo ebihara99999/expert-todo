@@ -61,7 +61,7 @@
       },
       submitImage: function (current_path) {
         let formData = new FormData();
-        let path = current_path.replace("/new", "");
+        let path = current_path.replace("/new", ""); //TODO: パスの取り方は工夫できそう
         for (let i = 0; i < this.images.length; i++) {
           formData.append('task_file' + i, this.images[i].uploadFile);
         }
