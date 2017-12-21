@@ -1,9 +1,9 @@
 import Vue from 'vue/dist/vue.esm'
-import Uploader from '../components/file_uploader.vue'
+import taskFileForm from '../components/task_files/new.vue'
 
-var app = new Vue({
+new Vue({
     el: '#app',
     components: {
-      'uploader': Uploader,
+      'task-file-form': taskFileForm,
     },
 });
