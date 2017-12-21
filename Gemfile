@@ -35,6 +35,8 @@ gem "jbuilder", "~> 2.5"
 # gem 'capistrano-rails', group: :development
 
 gem "devise"
+gem "devise_token_auth"
+gem "rack-cors", :require => "rack/cors"
 
 gem "active_decorator"
 

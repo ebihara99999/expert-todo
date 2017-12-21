@@ -42,15 +42,18 @@
       submitTask: function () {
         let config = {
           headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
           }
         };
         //if (process.env.RAILS_ENV != "test") {
           // テストだとdocument.getElementsByName('csrf-token')[0]が取得できず、エラーが起きる
        //   axios.defaults.headers['X-CSRF-TOKEN'] = this.csrfToken;
         //}
+        let params = {
+          'task': this.task
+        };
         axios
-          .post('/tasks', this.task, config)
+          .post('/tasks', params, config)
           .then((response) => {})
           .catch((response) => {
           console.log(response);

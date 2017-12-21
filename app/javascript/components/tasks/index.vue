@@ -2,6 +2,7 @@
     <div>
         <h1>タスク一覧</h1>
         <h2><router-link :to="{ name: 'newTaskPath'}">タスクの新規作成</router-link></h2>
+        <h3><router-link :to="{ name: 'newSessionPath'}">ログイン</router-link></h3>
         <table>
             <thead>
             <tr>
@@ -47,7 +48,19 @@
     },
     methods: {
       setTasks() {
-        axios.get('/tasks').then((response) => {
+        let config = {
+          headers: {
+            'content-type': 'application/json',
+          //  'access-token': '',
+          //  'token-type': 'Bearer',
+          //  'client': '',
+          //  'uid': ''
+          //$2a$10$xkq1Pbp/A/z/1Uxffk8mB.Jv/rF3TZGf671O3zFiHP/pyge/almJW
+            'Authorization': `Bearer yXpE3U5g64ZgtAOM_B-I1Q`
+          }
+        };
+
+        axios.get('/tasks', config).then((response) => {
           this.tasks = response.data.tasks;
         }).catch((response) => {
           console.log(response.error);

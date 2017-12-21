@@ -1,9 +1,10 @@
 class TasksController < ApplicationController
   before_action :authenticate_user!
   before_action :load_task, only: [:edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
 
   def index
+    binding.pry
     @tasks = current_user.tasks
     render :index, formats: "json", handlers: "jbuilder"
   end
