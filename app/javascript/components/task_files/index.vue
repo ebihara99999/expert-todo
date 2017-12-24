@@ -37,13 +37,21 @@
       }
     },
     created() {
-      this.setTaskFiles();
+      this.fetchTaskFiles();
     },
     methods: {
-      setTaskFiles() {
-        axios.get(`/tasks/${this.$route.params.task_id}/task_files`).then((response) => {
+      fetchTaskFiles() {
+        let config = {
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': localStorage.getItem('auth-token')
+          }
+        };
+
+        axios.get(`/tasks/${this.$route.params.task_id}/task_files`, config).then((response) => {
           this.taskFiles = response.data.task_files;
         }).catch((response) => {
+          window.location.href = window.location.origin; //認証失敗の場合
           console.log(response);
         });
       },

@@ -67,7 +67,8 @@
         }
         let config = {
           headers: {
-            'content-type': 'multipart/form-data'
+            'content-type': 'multipart/form-data',
+            'Authorization': localStorage.getItem('auth-token')
           }
         };
 

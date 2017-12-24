@@ -47,14 +47,23 @@
       submitTask: function () {
         let config = {
           headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'Authorization': localStorage.getItem('auth-token')
           },
         };
+
+        if (process.env.RAILS_ENV != "test") {
+          // テストだとdocument.getElementsByName('csrf-token')[0]が取得できず、エラーが起きる
+          axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+        }
+
         axios
           .patch(`/tasks/${this.task.id}`, this.task, config)
-          .then((response) => {
+          .then(() => {
+            this.$router.push('/tasks');
           })
           .catch((response) => {
+            this.$router.push('/'); //認証失敗の場合
             console.log(response);
           });
       }

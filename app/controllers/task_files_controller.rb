@@ -1,5 +1,5 @@
 class TaskFilesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :jwt_require_auth
 
   def index
     @task_files = current_user.tasks.find(params[:task_id]).task_files

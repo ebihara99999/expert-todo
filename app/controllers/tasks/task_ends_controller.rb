@@ -1,6 +1,6 @@
 module Tasks
   class TaskEndsController < ApplicationController
-    before_action :authenticate_user!
+    before_action :jwt_require_auth
 
     def create
       @task = Task.find(params[:id])

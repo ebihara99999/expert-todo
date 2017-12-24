@@ -44,26 +44,27 @@
       }
     },
     created() {
-      this.setTasks();
+      this.fetchTasks();
     },
     methods: {
-      setTasks() {
+      fetchTasks() {
         let config = {
           headers: {
             'content-type': 'application/json',
-          //  'access-token': '',
-          //  'token-type': 'Bearer',
-          //  'client': '',
-          //  'uid': ''
-          //$2a$10$xkq1Pbp/A/z/1Uxffk8mB.Jv/rF3TZGf671O3zFiHP/pyge/almJW
-            'Authorization': `Bearer yXpE3U5g64ZgtAOM_B-I1Q`
+            'Authorization': localStorage.getItem('auth-token')
           }
         };
+
+        if (process.env.RAILS_ENV != "test") {
+          // テストだとdocument.getElementsByName('csrf-token')[0]が取得できず、エラーが起きる
+          axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+        }
 
         axios.get('/tasks', config).then((response) => {
           this.tasks = response.data.tasks;
         }).catch((response) => {
-          console.log(response.error);
+          console.log(response);
+          this.$router.push('/'); //認証失敗の場合
         });
       }
     }

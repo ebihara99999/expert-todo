@@ -1,10 +1,8 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :jwt_require_auth
   before_action :load_task, only: [:edit, :update, :destroy]
-  #skip_before_action :verify_authenticity_token
 
   def index
-    binding.pry
     @tasks = current_user.tasks
     render :index, formats: "json", handlers: "jbuilder"
   end
@@ -34,7 +32,7 @@ class TasksController < ApplicationController
   def update
     @task.assign_attributes(task_params(params))
     if @task.save
-      #redirect_to tasks_path, notice: "タスクを更新しました", status: :ok
+      # redirect_to tasks_path, notice: "タスクを更新しました", status: :ok
       render :index, formats: "json", handlers: "jbuilder"
     else
       render json: @task.errors, status: :unprocessable_entity
