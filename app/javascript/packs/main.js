@@ -6,10 +6,12 @@ import TaskFileIndex from '../components/task_files/index.vue'
 import TaskFileNew from '../components/task_files/new.vue'
 import SessionNew from '../components/sessions/new.vue'
 import VueRouter from 'vue-router';
+import Header from '../components/shared/header.vue'
 
 Vue.use(VueRouter);
 
 const routes = [
+  { path: '/', name: 'rootPath' },
   { path: '/tasks', name: 'tasksPath', component: TaskIndex},
   { path: '/tasks/new', name: 'newTaskPath', component: TaskNew},
   { path: '/tasks/:id/edit', name: 'editTaskPath', component: TaskEdit},
@@ -29,5 +31,7 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
-  components: {}
+  components: {
+    'navbar': Header,
+  }
 });
