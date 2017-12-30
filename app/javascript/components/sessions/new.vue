@@ -1,13 +1,42 @@
 <template>
     <div>
-        <h1>ログイン</h1>
-        <div class="new_session" id="new_session">
-            <label for="session_email">Eメール</label>
-            <input v-model="email" type="email" name="email" id="session_email">
-            <label for="session_password">パスワード</label>
-            <input v-model="password" type="text" name="password" id="session_password">
-            <button type="submit" name="commit" @click="submitSessionParams">登録</button>
-        </div>
+        <v-card color="grey lighten-4" flat>
+            <h1>ログイン</h1>
+            <v-container fluid>
+                <v-layout row>
+                    <v-flex xs4>
+                        <v-subheader>Eメール</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-text-field
+                                type="email"
+                                name="email"
+                                label="expert-todo@example.com"
+                                id="session_email"
+                                v-model="email"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
+
+                <v-layout row>
+                    <v-flex xs4>
+                        <v-subheader>パスワード</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-text-field
+                                type="password"
+                                name="password"
+                                label="password"
+                                id="session_password"
+                                v-model="password"
+                        ></v-text-field>
+                    </v-flex>
+                </v-layout>
+                <v-card-actions>
+                    <v-btn color="primary" flat @click="submitSessionParams">ログイン</v-btn>
+                </v-card-actions>
+            </v-container>
+        </v-card>
     </div>
 </template>
 
