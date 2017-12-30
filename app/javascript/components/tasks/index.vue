@@ -2,7 +2,6 @@
     <div>
         <h1>タスク一覧</h1>
         <h2><router-link :to="{ name: 'newTaskPath'}">タスクの新規作成</router-link></h2>
-        <h3><router-link :to="{ name: 'newSessionPath'}">ログイン</router-link></h3>
         <table>
             <thead>
             <tr>

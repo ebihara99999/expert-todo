@@ -1,8 +1,11 @@
 <div id="app">
-  <navbar></navbar>
-  <h1><%= t "welcome.index.title" %></h1>
-  <div class="container">
-    <router-view></router-view>
-  </div>
+  <v-app light>
+    <navbar></navbar>
+    <main>
+      <v-container fluid class="mt-0">
+        <router-view></router-view>
+      </v-container>
+    </main>
+  </v-app>
 </div>
 <%= javascript_pack_tag 'main' %>
