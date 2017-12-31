@@ -16,6 +16,7 @@
                 <td class="text-xs-right">{{ props.item.description }}</td>
                 <td class="text-xs-right">{{ props.item.due_date }}</td>
                 <td class="text-xs-right">{{ props.item.created_at }}</td>
+                <td class="text-xs-right"><router-link :to="{ name: 'taskFilesPath', params: {task_id: props.item.id}  }">ファイル一覧</router-link></td>
             </template>
         </v-data-table>
     </div>
@@ -33,6 +34,7 @@
           {text: '詳細', value: 'description', sortable: true},
           {text: '期限', value: 'due_date', sortable: true},
           {text: '作成日', value: 'created_at', sortable: true},
+          {text: 'ファイル一覧'},
         ],
       }
     },

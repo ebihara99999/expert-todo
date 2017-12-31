@@ -4,26 +4,18 @@
         <h2>
             <router-link :to="{ name: 'newTaskFilePath'}">ファイルの添付</router-link>
         </h2>
-        <table>
-            <thead>
-            <tr>
-                <th>ファイル名</th>
-                <th>作成日</th>
-                <th>更新日</th>
-                <th>ダウンロード</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="taskFile in taskFiles">
-                <td>{{ taskFile.filename }}</td>
-                <td>{{ taskFile.created_at }}</td>
-                <td>{{ taskFile.updated_at }}</td>
-                <td>
-                    <button @click="downloadFile(taskFile.attached_file.url, taskFile.filename)">ダウンロード</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <v-data-table
+                v-bind:headers="headers"
+                :items="items"
+                hide-actions
+                class="elevation-1"
+        >
+            <template slot="items" scope="props">
+                <td class="text-xs-right">{{ props.item.filename }}</td>
+                <td class="text-xs-right">{{ props.item.created_at }}</td>
+                <td class="text-xs-right"><button @click="downloadFile(props.item.attached_file.url, props.item.filename)">ダウンロード</button></td>
+            </template>
+        </v-data-table>
     </div>
 </template>
 
@@ -33,7 +25,12 @@
   export default {
     data: () => {
       return {
-        taskFiles: []
+        items: [],
+        headers: [
+          {text: 'ファイル名', value: 'filename', sortable: true},
+          {text: '作成日', value: 'created_at', sortable: true},
+          {text: 'ダウンロード'},
+        ]
       }
     },
     created() {
@@ -49,7 +46,7 @@
         };
 
         axios.get(`/tasks/${this.$route.params.task_id}/task_files`, config).then((response) => {
-          this.taskFiles = response.data.task_files;
+          this.items = response.data.task_files;
         }).catch((response) => {
           window.location.href = window.location.origin; //認証失敗の場合
           console.log(response);
