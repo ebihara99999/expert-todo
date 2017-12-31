@@ -1,35 +1,23 @@
 <template>
     <div>
         <h1>タスク一覧</h1>
-        <h2><router-link :to="{ name: 'newTaskPath'}">タスクの新規作成</router-link></h2>
-        <table>
-            <thead>
-            <tr>
-                <th>タスク名</th>
-                <th>詳細</th>
-                <th>期限日</th>
-                <th>作成日</th>
-                <th>更新日</th>
-                <th>編集</th>
-                <th>ファイルを添付</th>
-                <th>添付ファイル一覧</th>
-                <th>終了済みへ変更</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="task in tasks">
-                <td>{{ task.task_name }}</td>
-                <td>{{ task.description }}</td>
-                <td>{{ task.due_date }}</td>
-                <td>{{ task.created_at }}</td>
-                <td>{{ task.updated_at }}</td>
-                <td><router-link :to="{ name: 'editTaskPath', params: { id: task.id }}">編集</router-link></td>
-                <td><router-link :to="{ name: 'newTaskFilePath', params: { task_id: task.id } }">ファイル添付</router-link></td>
-                <td><router-link :to="{ name: 'taskFilesPath', params: { task_id: task.id } }">ファイル一覧</router-link></td>
-                <td><router-link :to="{ name: 'taskEndPath' }">終了済みへ変更</router-link></td>
-            </tr>
-            </tbody>
-        </table>
+        <h2>
+            <router-link :to="{ name: 'newTaskPath'}">タスクの新規作成</router-link>
+        </h2>
+
+        <v-data-table
+                v-bind:headers="headers"
+                :items="items"
+                hide-actions
+                class="elevation-1"
+        >
+            <template slot="items" scope="props">
+                <td class="text-xs-right">{{ props.item.task_name }}</td>
+                <td class="text-xs-right">{{ props.item.description }}</td>
+                <td class="text-xs-right">{{ props.item.due_date }}</td>
+                <td class="text-xs-right">{{ props.item.created_at }}</td>
+            </template>
+        </v-data-table>
     </div>
 </template>
 
@@ -39,7 +27,13 @@
   export default {
     data: () => {
       return {
-        tasks: []
+        items: [],
+        headers: [
+          {text: 'タスク名', value: 'task_name', sortable: true},
+          {text: '詳細', value: 'description', sortable: true},
+          {text: '期限', value: 'due_date', sortable: true},
+          {text: '作成日', value: 'created_at', sortable: true},
+        ],
       }
     },
     created() {
@@ -60,7 +54,7 @@
         }
 
         axios.get('/tasks', config).then((response) => {
-          this.tasks = response.data.tasks;
+          this.items = response.data.tasks;
         }).catch((response) => {
           console.log(response);
           this.$router.push('/'); //認証失敗の場合
