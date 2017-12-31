@@ -12,6 +12,7 @@
                 class="elevation-1"
         >
             <template slot="items" scope="props">
+                <td class="text-xs-right"><router-link :to="{ name: 'editTaskPath', params: {id: props.item.id}  }">編集</router-link></td>
                 <td class="text-xs-right">{{ props.item.task_name }}</td>
                 <td class="text-xs-right">{{ props.item.description }}</td>
                 <td class="text-xs-right">{{ props.item.due_date }}</td>
@@ -30,11 +31,12 @@
       return {
         items: [],
         headers: [
+          {text: '編集', value: ''},
           {text: 'タスク名', value: 'task_name', sortable: true},
           {text: '詳細', value: 'description', sortable: true},
           {text: '期限', value: 'due_date', sortable: true},
           {text: '作成日', value: 'created_at', sortable: true},
-          {text: 'ファイル一覧'},
+          {text: 'ファイル一覧', value: ''},
         ],
       }
     },
