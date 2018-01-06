@@ -21,4 +21,5 @@ database:
 test:
   override:
     - bundle exec rubocop
+    - yarn run lint
     - bundle exec rspec spec/
