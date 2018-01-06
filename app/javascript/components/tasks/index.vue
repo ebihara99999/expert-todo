@@ -11,7 +11,10 @@
       hide-actions
       class="elevation-1"
     >
-      <template slot="items" scope="props">
+      <template
+        slot="items"
+        scope="props"
+      >
         <td class="text-xs-right">
           <router-link :to="{ name: 'editTaskPath', params: {id: props.item.id} }">編集</router-link>
         </td>
@@ -20,10 +23,17 @@
         <td class="text-xs-right">{{ props.item.due_date }}</td>
         <td class="text-xs-right">{{ props.item.created_at }}</td>
         <td class="text-xs-right">
-          <router-link :to="{ name: 'taskFilesPath', params: {task_id: props.item.id} }">ファイル一覧</router-link>
+          <router-link :to="{ name: 'taskFilesPath', params: {taskId: props.item.id} }">
+            ファイル一覧
+          </router-link>
         </td>
         <td class="text-xs-right">
-          <v-btn color="primary" @click.native="makeTaskEnd(props.item.id)">終了済みへ変更</v-btn>
+          <v-btn
+            color="primary"
+            @click.native="makeTaskEnd(props.item.id)"
+          >
+            終了済みへ変更
+          </v-btn>
         </td>
       </template>
     </v-data-table>
@@ -52,7 +62,7 @@
       this.fetchTasks();
     },
     methods: {
-      makeTaskEnd(task_id) {
+      makeTaskEnd(taskId) {
         let config = {
           headers: {
             'content-type': 'application/json',
@@ -61,12 +71,13 @@
         };
 
         let params = {
-          'id': task_id,
+          'id': taskId,
         };
 
         if (process.env.RAILS_ENV != 'test') {
           // テストだとdocument.getElementsByName('csrf-token')[0]が取得できず、エラーが起きる
-          axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+          axios.defaults.headers['X-CSRF-TOKEN'] =
+            document.getElementsByName('csrf-token')[0].content;
         }
 
         axios.post('/tasks/task_end', params, config).then(() => {
@@ -87,7 +98,8 @@
 
         if (process.env.RAILS_ENV != 'test') {
           // テストだとdocument.getElementsByName('csrf-token')[0]が取得できず、エラーが起きる
-          axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+          axios.defaults.headers['X-CSRF-TOKEN'] =
+            document.getElementsByName('csrf-token')[0].content;
         }
 
         axios.get('/tasks', config).then((response) => {

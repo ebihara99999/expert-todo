@@ -10,10 +10,17 @@
       hide-actions
       class="elevation-1"
     >
-      <template slot="items" scope="props">
+      <template
+        slot="items"
+        scope="props"
+      >
         <td class="text-xs-right">{{ props.item.filename }}</td>
         <td class="text-xs-right">{{ props.item.created_at }}</td>
-        <td class="text-xs-right"><button @click="downloadFile(props.item.attached_file.url, props.item.filename)">ダウンロード</button></td>
+        <td class="text-xs-right">
+          <button @click="downloadFile(props.item.attached_file.url, props.item.filename)">
+            ダウンロード
+          </button>
+        </td>
       </template>
     </v-data-table>
   </div>

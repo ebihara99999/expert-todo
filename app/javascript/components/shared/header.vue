@@ -1,5 +1,11 @@
 <template>
-  <v-navigation-drawer permanent dark class="blue lighten-3" width="100%" height="6%">
+  <v-navigation-drawer
+    permanent
+    dark
+    class="blue lighten-3"
+    width="100%"
+    height="6%"
+  >
     <v-list>
       <v-list-tile>
         <v-list-tile-content>

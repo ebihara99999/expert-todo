@@ -1,5 +1,8 @@
 <template>
-  <v-card color="grey lighten-4" flat>
+  <v-card
+    color="grey lighten-4"
+    flat
+  >
     <h1>編集</h1>
     <v-container fluid>
       <v-layout row>
@@ -47,7 +50,13 @@
       </v-layout>
 
       <v-card-actions>
-        <v-btn color="primary" flat @click="submitTask">更新</v-btn>
+        <v-btn
+          color="primary"
+          flat
+          @click="submitTask"
+        >
+          更新
+        </v-btn>
       </v-card-actions>
     </v-container>
   </v-card>
@@ -102,7 +111,8 @@
 
         if (process.env.RAILS_ENV != 'test') {
           // テストだとdocument.getElementsByName('csrf-token')[0]が取得できず、エラーが起きる
-          axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+          axios.defaults.headers['X-CSRF-TOKEN'] =
+            document.getElementsByName('csrf-token')[0].content;
         }
 
         axios

@@ -3,7 +3,10 @@
     <div v-if="uploadedImageNames">
       <h3>アップロードされたファイル</h3>
       <ol>
-        <li v-for="(uploadedImageName, index) in uploadedImageNames">
+        <li
+          v-for="(uploadedImageName) in uploadedImageNames"
+          :key="uploadedImageName"
+        >
           <h2>{{ uploadedImageName }}</h2>
         </li>
       </ol>
@@ -13,12 +16,19 @@
       <div v-if="message != ''">{{ message }}</div>
       <h2>Taskにファイルを添付</h2>
       <label for="attachment_file_to_task">ファイルを添付</label>
-      <input type="file" id="attachment_file_to_task" @change="onFileChange">
+      <input
+        type="file"
+        id="attachment_file_to_task"
+        @change="onFileChange"
+      >
     </div>
 
     <div v-if="images">
       <ol>
-        <li v-for="(image, index) in images">
+        <li
+          v-for="(image, index) in images"
+          :key="image.id"
+        >
           <h2>{{ image.name }}</h2>
           <img :src="image.thumnail">
           <button @click="images.splice(index, 1)">Remove image</button>
@@ -26,7 +36,7 @@
       </ol>
     </div>
 
-    <button @click="submitImage(current_path)">Submit image</button>
+    <button @click="submitImage(currentPath)">Submit image</button>
   </div>
 </template>
 
@@ -37,7 +47,7 @@
     data: () => {
       return {
         images: [],
-        current_path: window.location.pathname,
+        currentPath: window.location.pathname,
         message: '',
         uploadedImageNames: [],
       };
@@ -59,9 +69,9 @@
         };
         reader.readAsDataURL(file);
       },
-      submitImage: function(current_path) {
+      submitImage: function(currentPath) {
         let formData = new FormData();
-        let path = current_path.replace('/new', '');
+        let path = currentPath.replace('/new', '');
         for (let i = 0; i < this.images.length; i++) {
           formData.append('task_file' + i, this.images[i].uploadFile);
         }
@@ -74,7 +84,8 @@
 
         if (process.env.RAILS_ENV != 'test') {
           // テストだとdocument.getElementsByName('csrf-token')[0]が取得できず、エラーが起きる
-          axios.defaults.headers['X-CSRF-TOKEN'] = document.getElementsByName('csrf-token')[0].content;
+          axios.defaults.headers['X-CSRF-TOKEN'] =
+            document.getElementsByName('csrf-token')[0].content;
         }
 
         axios
