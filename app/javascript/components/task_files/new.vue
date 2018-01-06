@@ -4,7 +4,7 @@
       <h3>アップロードされたファイル</h3>
       <ol>
         <li
-          v-for="(uploadedImageName) in uploadedImageNames"
+          v-for="uploadedImageName in uploadedImageNames"
           :key="uploadedImageName"
         >
           <h2>{{ uploadedImageName }}</h2>
