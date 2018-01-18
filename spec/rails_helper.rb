@@ -55,9 +55,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.include Devise::Test::IntegrationHelpers, type: :request
-  config.include Devise::Test::IntegrationHelpers, type: :system
-
   config.before(:suite) do
     DatabaseRewinder.clean_all
   end
@@ -71,7 +68,8 @@ RSpec.configure do |config|
       caps = Selenium::WebDriver::Remote::Capabilities.chrome(
         chromeOptions: { args: %w[--headless] },
       )
-      driven_by(:selenium, options: { desired_capabilities: caps })
+      #driven_by(:selenium, options: { desired_capabilities: caps })
+      driven_by(:selenium)
     else
       driven_by(:rack_test)
     end
