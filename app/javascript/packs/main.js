@@ -20,11 +20,11 @@ const routes = [
   {path: '/tasks', name: 'tasksPath', component: TaskIndex},
   {path: '/tasks/new', name: 'newTaskPath', component: TaskNew},
   {path: '/tasks/:id/edit', name: 'editTaskPath', component: TaskEdit},
-  {path: '/tasks/:task_id/task_files/:id', name: 'taskFileShowPath'},
+  {path: '/tasks/:taskId/task_files/:id', name: 'taskFileShowPath'},
   {path: '/tasks/task_end', name: 'taskEndPath'},
-  {path: '/tasks/:task_id/task_files', name: 'taskFilesPath', component: TaskFileIndex},
-  {path: '/tasks/:task_id/task_files/new', name: 'newTaskFilePath', component: TaskFileNew},
-  {path: '/tasks/:task_id/task_files/:id', name: 'taskFilePath'},
+  {path: '/tasks/:taskId/task_files', name: 'taskFilesPath', component: TaskFileIndex},
+  {path: '/tasks/:taskId/task_files/new', name: 'newTaskFilePath', component: TaskFileNew},
+  {path: '/tasks/:taskId/task_files/:id', name: 'taskFilePath'},
   {path: '/sessions/new', name: 'newSessionPath', component: SessionNew},
 ];
 

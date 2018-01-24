@@ -55,14 +55,6 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.before(:suite) do
-    DatabaseRewinder.clean_all
-  end
-
-  config.after(:example) do |ex|
-    DatabaseRewinder.clean unless ex.metadata[:skip_clean]
-  end
-
   config.before(type: :system) do |ex|
     if ex.metadata[:js]
       caps = Selenium::WebDriver::Remote::Capabilities.chrome(

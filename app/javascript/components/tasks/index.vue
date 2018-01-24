@@ -103,6 +103,7 @@
         }
 
         axios.get('/tasks', config).then((response) => {
+          debugger;
           this.items = response.data.tasks;
         }).catch((response) => {
           console.log(response);

@@ -52,7 +52,7 @@
           },
         };
 
-        axios.get(`/tasks/${this.$route.params.task_id}/task_files`, config).then((response) => {
+        axios.get(`/tasks/${this.$route.params.taskId}/task_files`, config).then((response) => {
           this.items = response.data.task_files;
         }).catch((response) => {
           window.location.href = window.location.origin; // 認証失敗の場合
