@@ -80,7 +80,7 @@
             document.getElementsByName('csrf-token')[0].content;
         }
 
-        axios.post('/tasks/task_end', params, config).then(() => {
+        axios.post('/api/v1/tasks/task_end', params, config).then(() => {
           this.$router.push('/tasks');
         }).catch((response) => {
           console.log(response);
@@ -102,8 +102,7 @@
             document.getElementsByName('csrf-token')[0].content;
         }
 
-        axios.get('/tasks', config).then((response) => {
-          debugger;
+        axios.get('/api/v1/tasks', config).then((response) => {
           this.items = response.data.tasks;
         }).catch((response) => {
           console.log(response);

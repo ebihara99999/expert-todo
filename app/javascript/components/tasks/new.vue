@@ -95,7 +95,7 @@
         }
 
         axios
-          .post('/tasks', params, config)
+          .post('/api/v1/tasks', params, config)
           .then(() => {
             this.$router.push('/tasks');
           })

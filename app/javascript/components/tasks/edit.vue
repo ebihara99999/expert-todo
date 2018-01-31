@@ -87,7 +87,7 @@
             'Authorization': localStorage.getItem('auth-token'),
           },
         };
-        axios.get(this.$route.path, config).then((response) => {
+        axios.get(`/api/v1/${this.$route.path}`, config).then((response) => {
           this.task.id = response.data.id;
           this.task.user_id = response.data.user_id;
           this.task.task_name = response.data.task_name;
@@ -116,7 +116,7 @@
         }
 
         axios
-          .patch(`/tasks/${this.task.id}`, params, config)
+          .patch(`/api/v1/tasks/${this.task.id}`, params, config)
           .then(() => {
             this.$router.push('/tasks');
           })

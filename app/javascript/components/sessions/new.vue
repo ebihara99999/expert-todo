@@ -81,10 +81,10 @@
         }
 
         axios
-          .post('/users/sessions', sessionParams, config)
+          .post('/api/v1/users/sessions', sessionParams, config)
           .then((response) => {
             localStorage.setItem('auth-token', response.data.auth_token);
-            this.$router.push('/');
+            this.$router.push('/api/v1/');
           })
           .catch((response) => {
             console.log(response);

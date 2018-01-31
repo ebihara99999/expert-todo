@@ -71,7 +71,7 @@
       },
       submitImage: function(currentPath) {
         let formData = new FormData();
-        let path = currentPath.replace('/new', '');
+        let path = `/api/v1/${currentPath.replace('/new', '')}`;
         for (let i = 0; i < this.images.length; i++) {
           formData.append('task_file' + i, this.images[i].uploadFile);
         }
