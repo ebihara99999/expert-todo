@@ -23,3 +23,8 @@ Layout/AlignParameters:
   Exclude:
     - "bin/webpack"
     - "bin/webpack-dev-server"
+
+# テストヘルパーのため除外する
+Security/Eval:
+  Exclude:
+    - "spec/support/requests/login_helper.rb"
