@@ -26,7 +26,11 @@ Dir[Rails.root.join("spec", "support", "**", "*.rb")].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+require "rspec/json_matcher"
+
 RSpec.configure do |config|
+  config.include RSpec::JsonMatcher
+  
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -60,8 +64,7 @@ RSpec.configure do |config|
       caps = Selenium::WebDriver::Remote::Capabilities.chrome(
         chromeOptions: { args: %w[--headless] },
       )
-      #driven_by(:selenium, options: { desired_capabilities: caps })
-      driven_by(:selenium)
+      driven_by(:selenium, options: { desired_capabilities: caps })
     else
       driven_by(:rack_test)
     end
