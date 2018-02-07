@@ -8,7 +8,7 @@ RSpec.describe "Tasks", type: :request do
     @headers = {
       "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": token
+        "Authorization": token,
     }
   end
 
