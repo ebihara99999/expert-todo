@@ -8,9 +8,6 @@ module Api
         render :index, formats: "json", handlers: "jbuilder"
       end
       
-      def new
-      end
-      
       def show
         task_file = TaskFile.find(params[:id])
         downloaded_file = task_file.download
