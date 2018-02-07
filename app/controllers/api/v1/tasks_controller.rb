@@ -56,9 +56,9 @@ module Api
           )
         end
 
-      def load_task
-        @task = current_user.tasks.find_by(id: params[:id])
-      end
+        def load_task
+          @task = current_user.tasks.find_by(id: params[:id])
+        end
     end
   end
 end
