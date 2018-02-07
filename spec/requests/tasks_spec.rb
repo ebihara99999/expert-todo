@@ -6,7 +6,7 @@ RSpec.describe "Tasks", type: :request do
   before do
     token = jwt_of task.user
     @headers = {
-        "Content-Type": "application/json",
+      "Content-Type": "application/json",
         "Accept": "application/json",
         "Authorization": token
     }
@@ -17,7 +17,7 @@ RSpec.describe "Tasks", type: :request do
     
     let(:task_response) do
       {
-          id: Integer,
+        id: Integer,
           user_id: Integer,
           task_name: String,
           description: String,
