@@ -1,4 +1,4 @@
-def jwt_of(user = nil, password = 'password', route = nil)
+def jwt_of(user = nil, password = "password", route = nil)
   user ||= @user
   route ||= api_v1_users_sessions_path
 
