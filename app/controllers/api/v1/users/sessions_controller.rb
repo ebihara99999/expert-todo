@@ -14,7 +14,7 @@ module Api
           def session_params(params)
             params.require(:session).permit(
               :email,
-                :password,
+              :password,
             )
           end
       end
