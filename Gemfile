@@ -85,9 +85,9 @@ group :test do
   gem "capybara"
   gem "database_rewinder"
   gem "factory_girl_rails"
+  gem "rspec-json_matcher"
   gem "rspec-rails", "~> 3.7"
   gem "selenium-webdriver"
-  gem "rspec-json_matcher"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
