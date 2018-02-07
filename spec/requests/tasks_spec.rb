@@ -25,6 +25,7 @@ RSpec.describe "Tasks", type: :request do
           created_at: String,
       }
     end
+
     it "responses with 200" do
       expect(response).to have_http_status(200)
     end
