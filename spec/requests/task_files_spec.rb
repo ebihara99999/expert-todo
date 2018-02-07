@@ -16,7 +16,7 @@ RSpec.describe "TaskFiles", type: :request do
     before do
       get api_v1_task_task_files_path(task_id: task.id), headers: @headers
     end
-    
+
     it "responses with 200" do
       expect(response).to have_http_status(200)
     end

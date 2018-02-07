@@ -4,13 +4,13 @@ module Api
       class SessionsController < ApplicationController
         def new
         end
-      
+
         def create
           render json: jwt_auth(session_params(params)[:email], session_params(params)[:password])
         end
-      
+
         private
-      
+
           def session_params(params)
             params.require(:session).permit(
               :email,

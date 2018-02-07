@@ -3,7 +3,7 @@ module Api
     module Tasks
       class TaskEndsController < ApplicationController
         before_action :jwt_require_auth
-        
+
         def create
           @task = Task.find(params[:id])
           @task.is_done = true

@@ -16,7 +16,7 @@ RSpec.describe "Tasks", type: :system, js: true do
 
       find("#task_task_name").set "資料の作成"
       find("#app > div > main > div > div > div > div.card__actions > button > div").click
-      
+
       sleep 3 # TODO: This is required to pass the test!!!
 
       expect(Task.count).to eq 1
@@ -46,7 +46,7 @@ RSpec.describe "Tasks", type: :system, js: true do
 
       click_link "タスク一覧"
       find("#app > div > main > div > div > div > table > tbody > tr > td:nth-child(7) > button > div").click
-      
+
       sleep 3 # TODO: This is required to pass the test!!!
       expect(Task.where(is_done: true).count).to eq 1
     end

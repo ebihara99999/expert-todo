@@ -30,7 +30,7 @@ require "rspec/json_matcher"
 
 RSpec.configure do |config|
   config.include RSpec::JsonMatcher
-  
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
