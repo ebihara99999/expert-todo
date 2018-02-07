@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :users do
-        resources :sessions, only: [:new, :create], defaults: {format: :json}
+        resources :sessions, only: [:new, :create], defaults: { format: :json }
       end
       
-      resources :tasks, except: [:show], defaults: {format: :json} do
+      resources :tasks, except: [:show], defaults: { format: :json } do
         resources :task_files, only: [:index, :new, :create, :show]
       end
       
