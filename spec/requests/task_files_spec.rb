@@ -7,8 +7,8 @@ RSpec.describe "TaskFiles", type: :request do
     token = jwt_of task.user
     @headers = {
       "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": token,
+      "Accept": "application/json",
+      "Authorization": token,
     }
   end
 
