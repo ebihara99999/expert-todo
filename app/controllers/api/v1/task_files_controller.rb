@@ -25,9 +25,9 @@ module Api
       
       private
       
-      def task_files_params(params)
-        params.permit(:task_file0, :task_file1, :task_file2, :task_file3, :task_file4)
-      end
+        def task_files_params(params)
+          params.permit(:task_file0, :task_file1, :task_file2, :task_file3, :task_file4)
+        end
     end
   end
 end
