@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root "welcome#index"
+  get 'login' => 'user_sessions#new', :as => :login
+  resources :user_sessions
 
   namespace :api do
     namespace :v1 do
