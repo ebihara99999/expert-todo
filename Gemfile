@@ -34,7 +34,8 @@ gem "jbuilder", "~> 2.5"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem "devise"
+gem "rack-cors", require: "rack/cors"
+gem "sorcery", git: "git@github.com:WildDima/sorcery.git", branch: "feature/jwt-auth"
 
 gem "active_decorator"
 
@@ -84,6 +85,7 @@ group :test do
   gem "capybara"
   gem "database_rewinder"
   gem "factory_girl_rails"
+  gem "rspec-json_matcher"
   gem "rspec-rails", "~> 3.7"
   gem "selenium-webdriver"
 end

@@ -1,22 +1,23 @@
 require "rails_helper"
 
-RSpec.describe "Tasks", type: :system do
+RSpec.describe "Tasks", type: :system, js: true do
   context do
-    let(:user) { create :user }
+    let(:user) { create :user, :sign_up }
 
     before do
-      login_as user, scope: :user
+      login(user)
     end
 
     it "creates new task" do
-      visit "/tasks"
+      puts("in creates new task")
+      click_link "タスク一覧"
 
-      click_link "新規作成"
+      click_link "タスクの新規作成"
 
-      within "#new_task" do
-        fill_in "タスク名", with: "資料の作成"
-        click_button "登録"
-      end
+      find("#task_task_name").set "資料の作成"
+      find("#app > div > main > div > div > div > div.card__actions > button > div").click
+
+      sleep 3 # TODO: This is required to pass the test!!!
 
       expect(Task.count).to eq 1
     end
@@ -26,32 +27,28 @@ RSpec.describe "Tasks", type: :system do
     let(:task) { create :task }
 
     before do
-      login_as task.user, scope: :user
+      login(task.user)
     end
 
-    it "updates task" do
-      visit "/tasks"
-      within("#task_#{task.id}") { click_link "編集" }
-      within "#edit_task_#{task.id}" do
-        fill_in "タスク名", with: "変更後のタスク名"
-        fill_in "詳細", with: "変更後の詳細"
+    it "updates task and changes the task done" do
+      click_link "タスク一覧"
+      find("#app > div > main > div > div > div > table > tbody > tr > td:nth-child(1) > a").click # 編集ボタン押下
 
-        click_button "登録"
-      end
+      find("#task_task_name").native.clear
+      find("#task_task_name").set "変更後のタスク名"
+
+      find("#task_task_description").set "変更後のタスク詳細"
+      find("#app > div > main > div > div > div > div.card__actions > button > div").click # 更新ボタン押下
+      sleep 3 # TODO: This is required to pass the test!!!
+
       expect(Task.find_by(task_name: "変更後のタスク名")).not_to be_nil
-      expect(Task.find_by(description: "変更後の詳細")).not_to be_nil
-    end
+      expect(Task.find_by(description: "変更後のタスク詳細")).not_to be_nil
 
-    it "changes task done" do
-      visit "/tasks"
-      within("#task_#{task.id}") { click_link "終了済みへ変更" }
+      click_link "タスク一覧"
+      find("#app > div > main > div > div > div > table > tbody > tr > td:nth-child(7) > button > div").click
+
+      sleep 3 # TODO: This is required to pass the test!!!
       expect(Task.where(is_done: true).count).to eq 1
-    end
-
-    it "destroy task" do
-      visit "/tasks"
-      within("#task_#{task.id}") { click_link "削除" }
-      expect(Task.count).to eq 0
     end
   end
 end
