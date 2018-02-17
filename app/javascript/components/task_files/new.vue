@@ -1,43 +1,43 @@
 <template>
-    <div id="file-attachment">
-        <div v-if="uploadedImageNames">
-            <h3>アップロードされたファイル</h3>
-            <ol>
-                <li
-                        v-for="uploadedImageName in uploadedImageNames"
-                        :key="uploadedImageName"
-                >
-                    <h2>{{ uploadedImageName }}</h2>
-                </li>
-            </ol>
-        </div>
-
-        <div>
-            <div v-if="message != ''">{{ message }}</div>
-            <h2>Taskにファイルを添付</h2>
-            <label for="attachment_file_to_task">ファイルを添付</label>
-            <input
-                    type="file"
-                    id="attachment_file_to_task"
-                    @change="onFileChange"
-            >
-        </div>
-
-        <div v-if="images">
-            <ol>
-                <li
-                        v-for="(image, index) in images"
-                        :key="image.id"
-                >
-                    <h2>{{ image.name }}</h2>
-                    <img :src="image.thumnail">
-                    <button @click="images.splice(index, 1)">Remove image</button>
-                </li>
-            </ol>
-        </div>
-
-        <button @click="submitImage(currentPath)">Submit image</button>
+  <div id="file-attachment">
+    <div v-if="uploadedImageNames">
+      <h3>アップロードされたファイル</h3>
+      <ol>
+        <li
+          v-for="uploadedImageName in uploadedImageNames"
+          :key="uploadedImageName"
+        >
+          <h2>{{ uploadedImageName }}</h2>
+        </li>
+      </ol>
     </div>
+
+    <div>
+      <div v-if="message != ''">{{ message }}</div>
+      <h2>Taskにファイルを添付</h2>
+      <label for="attachment_file_to_task">ファイルを添付</label>
+      <input
+        type="file"
+        id="attachment_file_to_task"
+        @change="onFileChange"
+      >
+    </div>
+
+    <div v-if="images">
+      <ol>
+        <li
+          v-for="(image, index) in images"
+          :key="image.id"
+        >
+          <h2>{{ image.name }}</h2>
+          <img :src="image.thumnail">
+          <button @click="images.splice(index, 1)">Remove image</button>
+        </li>
+      </ol>
+    </div>
+
+    <button @click="submitImage(currentPath)">Submit image</button>
+  </div>
 </template>
 
 <script>
