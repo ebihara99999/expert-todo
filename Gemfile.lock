@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:WildDima/sorcery.git
+  remote: https://github.com/WildDima/sorcery.git
   revision: b06aa7a371cdca693d4d7877215e0ac39991bbdd
   branch: feature/jwt-auth
   specs:

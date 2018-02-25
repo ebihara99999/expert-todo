@@ -35,7 +35,7 @@ gem "jbuilder", "~> 2.5"
 # gem 'capistrano-rails', group: :development
 
 gem "rack-cors", require: "rack/cors"
-gem "sorcery", git: "git@github.com:WildDima/sorcery.git", branch: "feature/jwt-auth"
+gem "sorcery", git: "https://github.com/WildDima/sorcery.git", branch: "feature/jwt-auth"
 
 gem "active_decorator"
 
