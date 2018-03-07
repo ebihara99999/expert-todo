@@ -25,6 +25,26 @@
     "webpack-dev-server": "^2.9.1"
   },
   "scripts": {
-    "lint": "./node_modules/.bin/eslint app/javascript/components/**/*.vue app/javascript/packs/**/*.js"
+    "lint": "./node_modules/.bin/eslint app/javascript/components/**/*.vue app/javascript/packs/**/*.js",
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ],
+    "mapCoverage": true,
+    "testMatch": ["<rootDir>/__tests__/**/*.spec.js"]
   }
 }
