@@ -1,19 +1,18 @@
 require "rails_helper"
 
-RSpec.describe "TaskFiles", type: :system do
+RSpec.describe "TaskFiles", type: :system, js: true do
   context do
-    let(:user) { create :user }
+    let(:task) { create :task }
 
     before do
-      login_as user, scope: :user
+      login(task.user)
     end
 
-    it "uploads files", js: true do
+    it "uploads files" do
       # pending "Fix later"
-      create(:task, user_id: user.id)
-      visit "/tasks"
-
-      click_link "ファイルを添付"
+      click_link "タスク一覧"
+      click_link "ファイル一覧"
+      click_link "ファイルの添付"
 
       attach_file "attachment_file_to_task", Rails.root.join("spec", "support", "task_files", "konaki.jpg")
       attach_file "attachment_file_to_task", Rails.root.join("spec", "support", "task_files", "test1.txt")
