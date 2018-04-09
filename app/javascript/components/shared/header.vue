@@ -12,8 +12,16 @@
           <router-link :to="{ name: 'rootPath'}">TOP</router-link>
         </v-list-tile-content>
         <v-list-tile-content>
-          <button v-if='this.$store.getters.isLogin' v-on:click='deleteToken'>ログアウト</button>
-          <router-link v-else :to="{ name: 'newSessionPath'}">ログイン</router-link>
+          <button
+            v-if="this.$store.getters.isLogin"
+            @click="deleteToken">
+            ログアウト
+          </button>
+          <router-link
+            v-else
+            :to="{ name: 'newSessionPath'}">
+            ログイン
+          </router-link>
         </v-list-tile-content>
         <v-list-tile-content>
           <router-link :to="{ name: 'newUserPath'}">ユーザー作成</router-link>
@@ -30,19 +38,14 @@
   export default {
     methods: {
       deleteToken: function() {
-        let config = {
-          headers: {
-            'content-type': 'application/json',
-          },
-        };
         localStorage.removeItem('auth-token');
         this.$store.commit('logout');
         this.$router.push('/');
       },
       setToken: function() {
-        localStorage.setItem('auth-token', "hogehoge");
+        localStorage.setItem('auth-token', 'hogehoge');
         this.$store.commit('login');
-      }
+      },
     },
   };
 </script>
