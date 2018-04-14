@@ -8,6 +8,8 @@ jobs:
         - image: circleci/ruby:2.4.1
       node:
         version: 7.10.0
+    steps:
+      - checkout
     dependencies:
       override:
         - bundle install:
