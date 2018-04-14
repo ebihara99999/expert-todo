@@ -11,7 +11,8 @@
     "vue-loader": "^13.0.5",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.4.4",
-    "vuetify": "^0.17.6"
+    "vuetify": "^0.17.6",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.12",
@@ -45,6 +46,8 @@
       "<rootDir>/node_modules/jest-serializer-vue"
     ],
     "mapCoverage": true,
-    "testMatch": ["<rootDir>/__tests__/**/*.spec.js"]
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.spec.js"
+    ]
   }
 }

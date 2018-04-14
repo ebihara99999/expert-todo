@@ -1,7 +1,7 @@
 GIT
-  remote: https://github.com/WildDima/sorcery.git
-  revision: b06aa7a371cdca693d4d7877215e0ac39991bbdd
-  branch: feature/jwt-auth
+  remote: https://github.com/ebihara99999/sorcery.git
+  revision: 4dde3c1460863966745c7667cc923855b550f927
+  branch: jwt-auth
   specs:
     sorcery (0.11.0)
       bcrypt (~> 3.1)

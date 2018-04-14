@@ -4,7 +4,7 @@
       color="grey lighten-4"
       flat
     >
-      <h1>ログイン</h1>
+      <h1>ユーザー作成</h1>
       <v-container fluid>
         <v-layout row>
           <v-flex xs4>
@@ -15,7 +15,7 @@
               type="email"
               name="email"
               label="expert-todo@example.com"
-              id="session_email"
+              id="user_email"
               v-model="email"
             />
           </v-flex>
@@ -30,8 +30,22 @@
               type="password"
               name="password"
               label="password"
-              id="session_password"
+              id="user_password"
               v-model="password"
+            />
+          </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex xs4>
+            <v-subheader>パスワード確認</v-subheader>
+          </v-flex>
+          <v-flex xs8>
+            <v-text-field
+              type="password"
+              name="passwordConfirmation"
+              label="passwordConfirmation"
+              id="user_passwordConfirmation"
+              v-model="passwordConfirmation"
             />
           </v-flex>
         </v-layout>
@@ -39,9 +53,9 @@
           <v-btn
             color="primary"
             flat
-            @click="submitSessionParams"
+            @click="submitRegistrationParams"
           >
-            ログイン
+            ユーザー作成
           </v-btn>
         </v-card-actions>
       </v-container>
@@ -57,35 +71,36 @@
       return {
         email: '',
         password: '',
+        passwordConfirmation: '',
       };
     },
     methods: {
-      submitSessionParams: function() {
+      submitRegistrationParams: function() {
         let config = {
           headers: {
             'content-type': 'application/json',
           },
         };
 
-        let sessionParams = {
-          'session': {
+        let registrationParams = {
+          'user': {
             'email': this.email,
             'password': this.password,
+            'passwordConfirmation': this.passwordConfirmation,
           },
         };
 
         if (process.env.RAILS_ENV != 'test') {
           // テストだとdocument.getElementsByName('csrf-token')[0]が取得できず、エラーが起きる
           axios.defaults.headers['X-CSRF-TOKEN'] =
-          document.getElementsByName('csrf-token')[0].content;
+            document.getElementsByName('csrf-token')[0].content;
         }
 
         axios
-          .post('/api/v1/users/sessions', sessionParams, config)
+          .post('/api/v1/users/registrations', registrationParams, config)
           .then((response) => {
             localStorage.setItem('auth-token', response.data.auth_token);
-            this.$store.commit('login');
-            this.$router.push('/');
+            this.$router.push($newSessionPath);
           })
           .catch((response) => {
             console.log(response);
