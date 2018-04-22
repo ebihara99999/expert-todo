@@ -10,7 +10,13 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: circleci-demo-ruby
       - image: circleci/postgres
+        environment:
+          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_DB: expert-todo_test
+          POSTGRES_PASSWORD: ""
     steps:
       - checkout
 
@@ -57,7 +63,7 @@ jobs:
 
       - run:
           name: Wait for DB
-          command: bin/setup # dockerize -wait tcp://localhost:5432 -timeout 1m
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - run:
           name: Database setup
