@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     parallelism: 3
-    working_directory: ~/circleci-demo-ruby-rails
+    working_directory: ~/src
     docker:
       - image: circleci/ruby:2.4.1-node-browsers
         environment:
@@ -11,10 +11,10 @@ jobs:
           BUNDLE_PATH: vendor/bundle
           RAILS_ENV: test
           PGHOST: 127.0.0.1
-          PGUSER: circleci-demo-ruby
+          PGUSER: expert-todo
       - image: circleci/postgres
         environment:
-          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_USER: expert-todo
           POSTGRES_DB: expert-todo_test
           POSTGRES_PASSWORD: ""
     steps:
