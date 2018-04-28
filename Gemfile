@@ -86,7 +86,7 @@ end
 
 group :test do
   gem "capybara", ">= 2.15", "< 4.0"
-  gem "chromedriver-helper"
+  gem "chromedriver-helper" unless ENV.has_key?("CIRCLECI")
   gem "database_rewinder"
   gem "factory_girl_rails"
   gem "rspec-json_matcher"
