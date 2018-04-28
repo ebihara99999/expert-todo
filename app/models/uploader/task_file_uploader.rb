@@ -18,7 +18,7 @@ module Uploader
           task_files << TaskFile.create!(attached_file: send("task_file#{i}"))
         end
 
-        file_task_attachments = task_files.map { |task_file| FileTaskAttachment.new(task_file_id: task_file.id, task_id: task_id) }
+        file_task_attachments = task_files.map {|task_file| FileTaskAttachment.new(task_file_id: task_file.id, task_id: task_id) }
 
         result = FileTaskAttachment.import file_task_attachments, all_or_none: true
 
