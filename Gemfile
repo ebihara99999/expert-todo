@@ -42,7 +42,7 @@ gem "sorcery", git: "https://github.com/ebihara99999/sorcery.git", branch: "jwt-
 
 gem "active_decorator"
 
-gem "webpacker", github: "rails/webpacker"
+gem "webpacker", "~> 3.5"
 
 gem "carrierwave", "~> 1.0"
 gem "fog-aws"
