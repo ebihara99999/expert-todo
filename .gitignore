@@ -13,6 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore uploaded files in development
+/storage/*
+
 /node_modules
 /yarn-error.log
 
@@ -23,3 +26,14 @@
 
 .env
 package-lock.json
+
+# Ignore uploaded files in development
+/storage/*
+
+/public/assets
+/config/master.key
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
