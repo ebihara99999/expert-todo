@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :users do
         resources :sessions, only: [:new, :create], defaults: { format: :json }
+        resources :registrations, only: [:new, :create], defaults: { format: :json }
       end
 
       resources :tasks, except: [:show], defaults: { format: :json } do

@@ -27,7 +27,7 @@ RSpec.describe "Tasks", type: :request do
     end
 
     it "responses with 200" do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
 
     it do
@@ -39,7 +39,7 @@ RSpec.describe "Tasks", type: :request do
     before { get new_api_v1_task_path, headers: @headers }
 
     it "responses with 200" do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 
@@ -47,7 +47,7 @@ RSpec.describe "Tasks", type: :request do
     before { get edit_api_v1_task_path(task.id), headers: @headers }
 
     it "responses with 200" do
-      expect(response).to have_http_status(200)
+      expect(response).to have_http_status(:ok)
     end
   end
 end

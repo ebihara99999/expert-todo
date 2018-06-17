@@ -187,7 +187,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.salesforce.user_info_mapping = {:email => "email"}
 
   # --- user config ---
-  config.user_config do |user|
+  config.user_config do |_user|
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -449,6 +449,11 @@ Rails.application.config.sorcery.configure do |config|
     # Default: [:id]
     #
     # config.jwt_user_params =
+
+    # Payload to set like expiration time
+    # See https://github.com/jwt/ruby-jwt what claims can be used
+    # Default: `{}`
+    config.jwt_payload = { exp: Time.now.to_i + 1 * 3600 }
 
     # Header name which will parsed
     # Default: `Authorization`
