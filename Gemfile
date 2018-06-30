@@ -60,9 +60,6 @@ group :development, :test do
   # Detect N+1 problem.
   gem "bullet"
 
-  # To manage environment variables
-  gem "dotenv-rails"
-
   # Debugger
   gem "pry-byebug"
   gem "pry-doc"
